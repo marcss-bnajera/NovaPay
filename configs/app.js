@@ -1,5 +1,5 @@
 // configs/app.js
-'use strict';
+`use strict`;
 
 import express from 'express';
 import cors from 'cors';
@@ -7,6 +7,9 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import { dbConnection } from './db.js';
 import { corsOption } from './cors-configuration.js';
+
+// Importar rutas
+import rolesRoutes from '../scr/roles/roles.routes.js';
 
 // Si prefieres dejar el CORS en un archivo aparte como en tu guía:
 const setupMiddlewares = (app) => {
@@ -25,7 +28,8 @@ const setupMiddlewares = (app) => {
 const setupRoutes = (app) => {
     const BASE_URL = '/NovaPay/v1';
 
-    // Aqui van a ir rutas futuras
+    // Rutas de modulos
+    app.use(`${BASE_URL}/roles`, rolesRoutes);
 
     // Ruta de prueba
     app.get(`${BASE_URL}/check`, (req, res) => {
