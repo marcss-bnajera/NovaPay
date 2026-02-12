@@ -80,7 +80,7 @@ export const updateRole = async (req, res) => {
 
         if (updateRows === 0) {
             return res.status(404).json({
-                succes: false,
+                success: false,
                 message: "Rol no encontrado o no hubo cambios"
             });
         }
