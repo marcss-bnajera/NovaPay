@@ -2,6 +2,7 @@
 
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
+import logger from "./logger.js";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ export const db = new Sequelize(
         dialect: process.env.DB_DIALECT,
 
         // Cambiar a 'console.log' si queremos ver el SQL puro en bash
+        // logging: (msg) => logger.info(msg),
         logging: false,
         pool: {
             // Maximo de conexiones abiertas
@@ -34,7 +36,7 @@ export const dbConnection = async () => {
     try {
         // Autentica la conexion
         await db.authenticate();
-        console.log('PostgreeSQL | Connection successful.')
+        logger.info('PostgreeSQL | Connection successful.')
 
         /*
             Sincronizacion de los modelos:
@@ -42,9 +44,9 @@ export const dbConnection = async () => {
              Ideal para desarrollo ya que no borra los datos
         */
         await db.sync({ alter: true });
-        console.log('PostgreeSQL | Database synchronized and tables cheked.');
+        logger.info('PostgreeSQL | Database synchronized and tables cheked.');
     } catch (error) {
-        console.error('PostgreSQL | Connectin failed: ', error.message);
+        logger.error('PostgreSQL | Connectin failed: ', error.message);
         process.exit(1);
     }
 };
