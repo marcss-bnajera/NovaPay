@@ -11,6 +11,7 @@ import { corsOption } from './cors-configuration.js';
 // Importar rutas
 import rolesRoutes from '../scr/roles/roles.routes.js';
 import usersRoutes from '../scr/users/users.routes.js';
+import accountsRoutes from '../scr/accounts/accounts.routes.js';
 
 // Si prefieres dejar el CORS en un archivo aparte como en tu guía:
 const setupMiddlewares = (app) => {
@@ -32,6 +33,7 @@ const setupRoutes = (app) => {
     // Rutas de modulos
     app.use(`${BASE_URL}/roles`, rolesRoutes);
     app.use(`${BASE_URL}/users`, usersRoutes);
+    app.use(`${BASE_URL}/accounts`, accountsRoutes);
 
     // Ruta de prueba
     app.get(`${BASE_URL}/check`, (req, res) => {
