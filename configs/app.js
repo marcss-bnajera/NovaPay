@@ -15,6 +15,7 @@ import accountsRoutes from '../scr/accounts/accounts.routes.js';
 import depositsRoutes from '../scr/deposits/deposits.routes.js';
 import transfersRoutes from '../scr/transfers/transfers.routes.js';
 import productsRoutes from '../scr/products/products.routes.js';
+import shoppingsRoutes from '../scr/shoppings/shoppings.routes.js';
 
 // Si prefieres dejar el CORS en un archivo aparte como en tu guía:
 const setupMiddlewares = (app) => {
@@ -38,6 +39,7 @@ const setupRoutes = (app) => {
     app.use(`${BASE_URL}/users`, usersRoutes);
     app.use(`${BASE_URL}/accounts`, accountsRoutes);
     app.use(`${BASE_URL}/deposits`, depositsRoutes);
+    app.use(`${BASE_URL}/shoppings`, shoppingsRoutes);
 
     app.use(`${BASE_URL}/transfers`, transfersRoutes);
     app.use(`${BASE_URL}/products`, productsRoutes);
