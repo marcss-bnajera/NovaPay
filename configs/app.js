@@ -16,6 +16,8 @@ import depositsRoutes from '../scr/deposits/deposits.routes.js';
 import transfersRoutes from '../scr/transfers/transfers.routes.js';
 import productsRoutes from '../scr/products/products.routes.js';
 import shoppingsRoutes from '../scr/shoppings/shoppings.routes.js';
+import currenciesRoutes from '../scr/currencies/currencies.routes.js';
+import transactionsRoutes from '../scr/transactions/transactions.routes.js';
 
 // Si prefieres dejar el CORS en un archivo aparte como en tu guía:
 const setupMiddlewares = (app) => {
@@ -43,6 +45,8 @@ const setupRoutes = (app) => {
 
     app.use(`${BASE_URL}/transfers`, transfersRoutes);
     app.use(`${BASE_URL}/products`, productsRoutes);
+    app.use(`${BASE_URL}/currencies`, currenciesRoutes);
+    app.use(`${BASE_URL}/transactions`, transactionsRoutes);
 
     // Ruta de prueba
     app.get(`${BASE_URL}/check`, (req, res) => {
