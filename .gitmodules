@@ -1,0 +1,6 @@
+[submodule "Novapay-admin"]
+	path = Novapay-admin
+	url = git@github.com:marcss-bnajera/Novapay-admin.git
+[submodule "Novapay-user"]
+	path = Novapay-user
+	url = git@github.com:marcss-bnajera/Novapay-user.git

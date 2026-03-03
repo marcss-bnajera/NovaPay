@@ -1,33 +1,32 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:15-alpine
     container_name: novapay_db
-    restart: always
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin      
-      POSTGRES_DB: novapay_db       
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: novapay_db
     ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - "5433:5432"
 
-  app:
-    build: .
-    container_name: novapay_app
+  app-admin:
+    build: ./Novapay-admin
+    container_name: novapay_app_admin
     ports:
-      - "3000:3001"
-    environment: 
-      DB_HOST: db
-      DB_USER: postgres
-      DB_PASSWORD: admin            
-      DB_NAME: novapay_db           
-      DB_PORT: 5432
-      DB_DIALECT: postgres
+      - "3001:3001"
     depends_on:
       - db
+    environment:
+      DB_HOST: db
+      DB_NAME: novapay_db
 
-volumes:
-  postgres_data:
+  app-user:
+    build: ./Novapay-user
+    container_name: novapay_app_user
+    ports:
+      - "3002:3002"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_NAME: novapay_db
