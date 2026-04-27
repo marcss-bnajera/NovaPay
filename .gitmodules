@@ -7,3 +7,6 @@
 [submodule "client-admin"]
 	path = client-admin
 	url = https://github.com/marcss-bnajera/client-admin-novapay.git
+[submodule "auth-service-novapay"]
+	path = auth-service-novapay
+	url = git@github.com:JackFallas/auth-service-novapay.git
