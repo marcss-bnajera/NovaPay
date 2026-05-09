@@ -14,6 +14,33 @@ services:
       timeout: 5s
       retries: 5
 
+  auth-service:
+    build: ./auth-service-novapay
+    container_name: novapay_auth
+    ports:
+      - "3000:3000"
+    restart: on-failure
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_URLS: http://+:3000
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=novapay_db;Username=postgres;Password=admin"
+      JwtSettings__SecretKey: ldskfj34ioji4o3jwefqjiwofj4ijf49i2904i2309i432904
+      JwtSettings__Issuer: NovaPayAuthService
+      JwtSettings__Audience: NovaPayServices
+      JwtSettings__ExpiryInMinutes: "120"
+      SmtpSettings__Host: smtp.gmail.com
+      SmtpSettings__Port: "465"
+      SmtpSettings__Username: eltrabajobienhechokinalito@gmail.com
+      SmtpSettings__Password: "wegt znar psjb oesi"
+      SmtpSettings__FromEmail: eltrabajobienhechokinalito@gmail.com
+      SmtpSettings__FromName: NovaPay
+      SmtpSettings__Enabled: "true"
+      SmtpSettings__UseImplicitSsl: "true"
+      AppSettings__FrontendUrl: http://localhost:5173
+
   app-admin:
     build: ./Novapay-admin
     container_name: novapay_app_admin
@@ -23,9 +50,15 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      auth-service:
+        condition: service_started
     environment:
       DB_HOST: db
+      DB_PORT: 5432
       DB_NAME: novapay_db
+      DB_USER: postgres
+      DB_PASSWORD: admin
+      DB_DIALECT: postgres
 
   app-user:
     build: ./Novapay-user
@@ -39,4 +72,8 @@ services:
         condition: service_healthy
     environment:
       DB_HOST: db
+      DB_PORT: 5432
       DB_NAME: novapay_db
+      DB_USER: postgres
+      DB_PASSWORD: admin
+      DB_DIALECT: postgres

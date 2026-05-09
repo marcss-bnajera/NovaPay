@@ -1,12 +1,12 @@
 [submodule "Novapay-admin"]
 	path = Novapay-admin
-	url = git@github.com:marcss-bnajera/Novapay-admin.git
+	url = https://github.com/marcss-bnajera/Novapay-admin.git
 [submodule "Novapay-user"]
 	path = Novapay-user
-	url = git@github.com:marcss-bnajera/Novapay-user.git
+	url = https://github.com/marcss-bnajera/Novapay-user.git
 [submodule "client-admin"]
 	path = client-admin
 	url = https://github.com/marcss-bnajera/client-admin-novapay.git
 [submodule "auth-service-novapay"]
 	path = auth-service-novapay
-	url = git@github.com:JackFallas/auth-service-novapay.git
+	url = https://github.com/JackFallas/auth-service-novapay.git
