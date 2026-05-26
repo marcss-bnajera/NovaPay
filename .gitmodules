@@ -16,3 +16,6 @@
 	branch = main
 
 #Forzar actualizcion
+[submodule "client-admin-novapay"]
+	path = client-admin-novapay
+	url = https://github.com/marcss-bnajera/client-admin-novapay.git
