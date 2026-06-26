@@ -22,3 +22,7 @@
 [submodule "client-user-novapay"]
 	path = client-user-novapay
 	url = https://github.com/marcss-bnajera/client-user-novapay
+[submodule "client-user-mobile-novapay"]
+	path = client-user-mobile-novapay
+	url = https://github.com/marcss-bnajera/client-user-mobile-novapay.git
+	branch = main

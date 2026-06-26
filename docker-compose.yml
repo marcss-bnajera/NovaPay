@@ -45,6 +45,7 @@ services:
       Security__AllowedOrigins__2: "http://localhost:3002"
       Security__AllowedOrigins__3: "http://localhost:5173"
       Security__AllowedOrigins__4: "http://localhost:5174"
+      Security__AllowedOrigins__5: "http://192.168.1.10:3000"
 
   app-admin:
     build: ./Novapay-admin
@@ -110,3 +111,19 @@ services:
     environment:
       VITE_AUTH_URL: http://localhost:3000
       VITE_USER_URL: http://localhost:3002/NovaPay/v1
+
+  client-user-mobile:
+    build: ./client-user-mobile-novapay
+    container_name: novapay_mobile
+    ports:
+      - "8081:8081"
+    tty: true
+    restart: on-failure
+    depends_on:
+      - auth-service
+      - app-user
+    environment:
+      EXPO_PUBLIC_AUTH_URL: http://192.168.1.10:3000/api/v1/auth
+      EXPO_PUBLIC_USER: http://192.168.1.10:3002/novapay/v1
+      REACT_NATIVE_PACKAGER_HOSTNAME: 192.168.1.10
+      EXPO_DEVTOOLS_LISTEN_ADDRESS: 0.0.0.0
